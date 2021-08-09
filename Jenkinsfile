@@ -28,13 +28,13 @@ pipeline {
         container( 'golang' ) {
           echo 'Compiling and building'
           sh "go build simple-httpd.go"
-          sh "ls -AlF"
         }
       }
     }
     stage( 'Build Docker Image' ) {
       steps {
         container( 'docker' ) {  
+          sh "ls -AlF"
           sh "docker build -t ps74/cicd-lab:simple-httpd-$BUILD_NUMBER ."  // when we run docker in this step, we're running it via a shell on the docker build-pod container,
           //sh "docker push ps74/cicd-lab:simple-httpd"        // which is just connecting to the host docker deaemon
         }
