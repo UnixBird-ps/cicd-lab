@@ -28,7 +28,7 @@ pipeline {
         container( 'golang' ) {
           echo 'Compiling and building'
           sh "go build simple-httpd.go"
-          sh "ls -AlpN"
+          sh "ls -AlF"
         }
       }
     }
