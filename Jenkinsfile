@@ -34,9 +34,10 @@ pipeline {
     stage( 'Build Docker Image' ) {
       steps {
         container( 'docker' ) {  
-          sh "ls -AlF"
-          sh "docker build -t cicd-lab:simple-httpd-$BUILD_NUMBER ."  // when we run docker in this step, we're running it via a shell on the docker build-pod container,
-          sh "ls -AlF"
+          sh "pwd ; ls -AlF"
+          sh "mkdir myapp && mv simple-httpd myapp/"
+          sh "ls -AlF myapp/"
+          sh "docker build -t cicd-lab:simple-httpd-$BUILD_NUMBER -f ./Dockerfile myapp/"  // when we run docker in this step, we're running it via a shell on the docker build-pod container,
           //sh "docker push ps74/cicd-lab:simple-httpd"        // which is just connecting to the host docker deaemon
         }
       }
