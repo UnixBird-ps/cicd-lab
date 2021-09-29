@@ -1,1 +1,1 @@
-# cicd-lab
+# A Jenkins CI/CD lab
